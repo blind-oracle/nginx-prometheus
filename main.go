@@ -15,24 +15,20 @@ var (
 	debug   bool
 )
 
-func dPrintf(m string, f ...interface{}) {
-	if debug {
-		log.Printf(m, f...)
-	}
-}
-
 func receiveSyslog(ch syslog.LogPartsChannel) {
 	var (
-		l   *logEntry
-		err error
-		ok  bool
+		l       *logEntry
+		country string
+		err     error
+		ok      bool
 	)
 
 	for msg := range ch {
-		dPrintf("%s: %s", msg["hostname"], msg["content"])
+		if debug {
+			log.Printf("%s: %s", msg["hostname"], msg["content"])
+		}
 
-		l, err = parseSyslogMessage(msg)
-		if err != nil {
+		if l, err = parseSyslogMessage(msg); err != nil {
 			log.Printf("Unable to parse message: %s", err)
 			continue
 		}
@@ -51,8 +47,10 @@ func receiveSyslog(ch syslog.LogPartsChannel) {
 		}
 
 		if geoipDB != nil {
-			if l.clientCountry, err = geoipDB.LookupCountry(l.clientIP); err != nil || l.clientCountry == "" {
-				l.clientCountry = "Unknown"
+			if country, err = geoipDB.LookupCountry(l.clientIP); err != nil {
+				log.Printf("Unable to lookup country for IP %s: %s", l.clientIP, err)
+			} else if country != "" {
+				l.clientCountry = country
 			}
 		}
 

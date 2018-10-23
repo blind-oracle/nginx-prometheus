@@ -36,13 +36,14 @@ func parseSyslogMessage(msg format.LogParts) (l *logEntry, err error) {
 	}
 
 	l = &logEntry{
-		server:   msg["hostname"].(string),
-		scheme:   a[1],
-		hostname: a[2],
-		method:   a[3],
-		protocol: a[4],
-		uri:      strings.Split(a[5], "?")[0],
-		status:   a[6],
+		server:        msg["hostname"].(string),
+		scheme:        a[1],
+		hostname:      a[2],
+		method:        a[3],
+		protocol:      a[4],
+		uri:           strings.Split(a[5], "?")[0],
+		status:        a[6],
+		clientCountry: "Unknown",
 	}
 
 	if l.clientIP = net.ParseIP(a[0]); l.clientIP == nil {
