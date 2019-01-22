@@ -1,3 +1,7 @@
+[![GoDoc](https://godoc.org/github.com/blind-oracle/nginx-prometheus?status.svg)](https://godoc.org/github.com/blind-oracle/nginx-prometheus)
+[![cover.run](https://cover.run/go/github.com/blind-oracle/nginx-prometheus.svg?style=flat&tag=golang-1.10)](https://cover.run/go?tag=golang-1.10&repo=github.com%2Fblind-oracle%2Fnginx-prometheus)
+[![Go Report Card](https://goreportcard.com/badge/github.com/blind-oracle/nginx-prometheus)](https://goreportcard.com/report/github.com/blind-oracle/nginx-prometheus)
+
 # Nginx log parser and Prometheus exporter
 This service parses incoming syslog messages from Nginx sent over UDP and converts them into Prometheus metrics exported through the built-in HTTP server.
 
