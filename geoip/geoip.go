@@ -7,6 +7,7 @@ import (
 	maxminddb "github.com/oschwald/maxminddb-golang"
 )
 
+// GeoIP is an instance of GeoIP look up object
 type GeoIP struct {
 	dbCountry *geoip2.Reader
 }
