@@ -5,7 +5,7 @@ import (
 	"log"
 
 	radix "github.com/armon/go-radix"
-	"github.com/tutti-ch/tutti-services/nginx-metrics/geoip"
+	"github.com/blind-oracle/nginx-prometheus/geoip"
 	syslog "gopkg.in/mcuadros/go-syslog.v2"
 )
 
