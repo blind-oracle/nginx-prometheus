@@ -26,23 +26,24 @@ log_format collector '$remote_addr|$scheme|$host|$request_method|$server_protoco
 access_log syslog:server=1.1.1.1:1514,tag=nginx collector;
 ```
 
-## Building
-* Simple, with latest versions of all dependencies:
+## Getting it
+* Get binary directly from [releases](https://github.com/blind-oracle/nginx-prometheus/releases), only linux-amd64 build currently available: 
+
+* Simple build, with latest versions of all dependencies:
     ```
     go get github.com/blind-oracle/nginx-prometheus
     ```
 
-* Using dep to get pinned dependencies:
-    Get *dep*, e.g.:
+* Repoducible build, using dep to get pinned dependencies:
+    Get *dep* binary, e.g.:
     ```
     go get -u github.com/golang/dep/cmd/dep
     ```
 
-
     ```
     go get github.com/blind-oracle/nginx-prometheus
     cd $GOPATH/src/github.com/blind-oracle/nginx-prometheus
-    dep ensure
+    $GOPATH/bin/dep ensure
     go build
     ```
 
@@ -61,3 +62,6 @@ access_log syslog:server=1.1.1.1:1514,tag=nginx collector;
 * **listenHTTP** - ip:port on which to listen for incoming HTTP requests from Prometheus (defaults to 0.0.0.0:11080)
 * **geoipCountryDB** - path to MaxMind country GeoIP database (optional)
 * **uriPrefixFile** - path to a URI prefix list (optional)
+
+## Grafana dashboard
+Add Prometheus source to Grafana and import *grafana-dashboard.json* for most common graphs.
