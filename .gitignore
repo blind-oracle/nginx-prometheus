@@ -1,3 +1,6 @@
-nginx-prometheus*
+nginx-prometheus
+!deploy/*
 country.mmdb
 vendor*
+*.rpm
+*.deb

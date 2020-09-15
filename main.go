@@ -69,12 +69,12 @@ func main() {
 
 	flag.StringVar(&listenSyslog, "listenSyslog", "0.0.0.0:1514", "ip:port to listen for syslog messages")
 	flag.StringVar(&listenHTTP, "listenHTTP", "0.0.0.0:11080", "ip:port to listen for http requests")
-	flag.StringVar(&uriPrefixFile, "uriPrefixFile", "", "file with allowed URI prefixes - one per line. If not specified - no per-URI stats gathered")
-	flag.StringVar(&geoipCountryDB, "geoipCountryDB", "", "path to MaxMind GeoIP country DB. If not specified - no lookups performed")
+	flag.StringVar(&uriPrefixFile, "uriPrefixFile", "-", "file with allowed URI prefixes - one per line. If not specified - no per-URI stats gathered")
+	flag.StringVar(&geoipCountryDB, "geoipCountryDB", "-", "path to MaxMind GeoIP country DB. If not specified - no lookups performed")
 	flag.BoolVar(&debug, "debug", false, "Enable debug")
 	flag.Parse()
 
-	if uriPrefixFile != "" {
+	if uriPrefixFile != "-" {
 		if uriTree, err = uriLoad(uriPrefixFile); err != nil {
 			log.Fatalf("Unable to load URIs: %s", err)
 		}
@@ -82,7 +82,7 @@ func main() {
 		log.Printf("URI prefixes loaded: %d", uriTree.Len())
 	}
 
-	if geoipCountryDB != "" {
+	if geoipCountryDB != "-" {
 		if geoipDB, err = geoip.New(geoipCountryDB); err != nil {
 			log.Fatalf("Unable to load GeoIP database: %s", err)
 		}

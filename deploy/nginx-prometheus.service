@@ -1,0 +1,15 @@
+[Unit]
+Description=Service for exporting Nginx metrics to Prometheus
+Documentation=https://github.com/blind-oracle/nginx-prometheus
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/nginx-prometheus
+Type=simple
+PermissionsStartOnly=true
+ExecStart=/usr/bin/nginx-prometheus -listenHTTP ${LISTEN_HTTP} -listenSyslog ${LISTEN_SYSLOG} -geoipCountryDB ${GEOIP_DB} -uriPrefixFile ${URI_PREFIXES}
+Restart=on-failure
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target
