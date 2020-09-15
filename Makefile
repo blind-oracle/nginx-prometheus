@@ -49,7 +49,7 @@ build-rpm:
 		-m "$(MAINTAINER)" \
 		--license "$(LICENSE)" \
 		-a $(ARCH) \
-		--config-files /etc/$(NAME)/$(NAME).toml \
+		--config-files /etc/default/$(NAME) \
 		$(OUT)/$(NAME)=/usr/bin/$(NAME) \
 		deploy/$(NAME).service=/usr/lib/systemd/system/$(NAME).service \
 		deploy/$(NAME)=/etc/default/$(NAME) \
