@@ -60,6 +60,7 @@ func receiveSyslog(ch syslog.LogPartsChannel) {
 
 func main() {
 	var (
+		err            error
 		listenSyslog   string
 		listenHTTP     string
 		uriPrefixFile  string
@@ -74,8 +75,7 @@ func main() {
 	flag.Parse()
 
 	if uriPrefixFile != "" {
-		uriTree, err := uriLoad(uriPrefixFile)
-		if err != nil {
+		if uriTree, err = uriLoad(uriPrefixFile); err != nil {
 			log.Fatalf("Unable to load URIs: %s", err)
 		}
 
@@ -83,8 +83,7 @@ func main() {
 	}
 
 	if geoipCountryDB != "" {
-		geoipDB, err := geoip.New(geoipCountryDB)
-		if err != nil {
+		if geoipDB, err = geoip.New(geoipCountryDB); err != nil {
 			log.Fatalf("Unable to load GeoIP database: %s", err)
 		}
 
