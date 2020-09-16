@@ -10,15 +10,15 @@ This service parses incoming syslog messages from Nginx sent over UDP and conver
 - If the prefix-list is specified then per-URI statistics are generated.
   Using this feature without URI-prefix list is dangerous because it leads to an unbounded memory usage. It's therefore enabled only with a limited prefix list.
 
-      The URI prefix list is a plain-text file with a single prefix per line, e.g.
-      ```
-      /api/call1.json
-      /api/call2.json
-      /api/call3.json
-      ...
-      ```
+  The URI prefix list is a plain-text file with a single prefix per line, e.g.
 
-      URIs received from nginx are stripped of any query parameters - only the part before '?' is used.
+  ```bash
+  /api/call1.json
+  /api/call2.json
+  /api/call3.json
+  ```
+
+  URIs received from nginx are stripped of any query parameters - only the part before '?' is used.
 
 - It optionally supports country lookup for client IPs using MaxMind GeoIP database.
 
