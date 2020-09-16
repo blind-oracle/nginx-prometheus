@@ -7,7 +7,7 @@ After=network.target
 EnvironmentFile=/etc/default/nginx-prometheus
 Type=simple
 PermissionsStartOnly=true
-ExecStart=/usr/bin/nginx-prometheus -listenHTTP ${LISTEN_HTTP} -listenSyslog ${LISTEN_SYSLOG} -geoipCountryDB ${GEOIP_DB} -uriPrefixFile ${URI_PREFIXES}
+ExecStart=/usr/bin/nginx-prometheus -listenHTTP ${LISTEN_HTTP} -listenSyslog ${LISTEN_SYSLOG} -geoipCountryDB ${GEOIP_DB} -uriPrefixFile ${URI_PREFIXES} -debug ${DEBUG}
 Restart=on-failure
 KillMode=control-group
 
