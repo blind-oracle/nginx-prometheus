@@ -1,0 +1,17 @@
+services:
+  nginx-prometheus:
+    build: .
+    image: nginx-prometheus:latest
+    restart: unless-stopped
+    ports:
+      - "1514:1514/udp"
+      - "1514:1514/tcp"
+      - "11080:11080"
+    volumes:
+      - ./uriPrefixes.txt:/etc/nginx-prometheus/uriPrefixes.txt:ro
+      - ./country.mmdb:/etc/nginx-prometheus/country.mmdb:ro
+    command:
+      - "-uriPrefixFile"
+      - "/etc/nginx-prometheus/uriPrefixes.txt"
+      - "-geoipCountryDB"
+      - "/etc/nginx-prometheus/country.mmdb"

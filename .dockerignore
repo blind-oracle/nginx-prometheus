@@ -1,0 +1,8 @@
+*.rpm
+*.deb
+.out/
+.git/
+.gitignore
+*.md
+grafana-dashboard.json
+deploy/
