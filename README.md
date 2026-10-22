@@ -53,7 +53,7 @@ Get RPM & DEB from [releases](https://github.com/blind-oracle/nginx-prometheus/r
 
 ### Build from source
 
-Requires Go 1.25+.
+Requires Go 1.27.3+.
 
 ```bash
 git clone https://github.com/blind-oracle/nginx-prometheus.git
